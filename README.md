@@ -45,9 +45,12 @@ Pneumonia is a lung infection that inflames the air sacs, which may fill with fl
 ├── notebooks/
 │   ├── laksh_cnn_chest_xray.ipynb          # Custom CNN from scratch
 │   └── laksh_resnet_transfer_learning.ipynb # Transfer learning model
+├── src/
+│   ├── train_all.py       # End-to-end training script (both models)
+│   └── train_resnet.py    # ResNet two-phase fine-tuning script
 ├── data/          # Kaggle dataset (downloaded via Kaggle API, not committed)
 ├── models/        # Saved model weights
-├── results/       # Plots, confusion matrices, metrics
+├── results/       # Plots, confusion matrices, metrics, training logs
 └── .gitignore
 ```
 
@@ -63,10 +66,12 @@ Then run the notebooks in order (CNN first, then transfer learning).
 
 ## Results
 
-| Model | Test Accuracy | Precision | Recall |
+| Model | Test Accuracy | Precision (NORMAL / PNEUMONIA) | Recall (NORMAL / PNEUMONIA) |
 |---|---|---|---|
-| Custom CNN | *(to be filled after training)* | | |
-| Transfer Learning (ResNet) | *(to be filled after training)* | | |
+| Custom CNN (from scratch) | **91.03%** | 0.95 / 0.89 | 0.80 / 0.97 |
+| Transfer Learning (ResNet50) | **92.15%** | 0.92 / 0.92 | 0.86 / 0.96 |
+
+Both models were evaluated on the same held-out test set of 624 images. Accuracy/loss curves and confusion matrices are in `results/`. The transfer learning model slightly outperforms the from-scratch CNN and required far fewer training epochs to converge — demonstrating the value of pretrained ImageNet features.
 
 ## Learning Outcomes
 

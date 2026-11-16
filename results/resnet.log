@@ -1,0 +1,123 @@
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794820541.490273   80396 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+I0000 00:00:1794820541.514142   80396 cpu_feature_guard.cc:227] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: AVX2 AVX_VNNI FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+WARNING: All log messages before absl::InitializeLog() is called are written to STDERR
+I0000 00:00:1794820542.565331   80396 port.cc:153] oneDNN custom operations are on. You may see slightly different numerical results due to floating-point round-off errors from different computation orders. To turn them off, set the environment variable `TF_ENABLE_ONEDNN_OPTS=0`.
+train (5216, 150, 150, 3), val (16, 150, 150, 3), test (624, 150, 150, 3)
+I0000 00:00:1794820559.485845   80396 gpu_device.cc:2036] Created device /job:localhost/replica:0/task:0/device:GPU:0 with 1928 MB memory:  -> device: 0, name: NVIDIA GeForce RTX 3050 Laptop GPU, pci bus id: 0000:01:00.0, compute capability: 8.6
+class weights: {0: np.float64(1.9448173005219984), 1: np.float64(0.6730322580645162)}
+============================== PHASE 1: frozen backbone, head only (5 epochs)
+Epoch 1/5
+I0000 00:00:1794820561.011583   80396 generator_dataset_op.cc:213] Memory patch applied: M_TRIM_THRESHOLD=128 kb was set.
+I0000 00:00:1794820562.968113   80396 service.cc:154] XLA service 0x559345d61ba0 initialized for platform CUDA (this does not guarantee that XLA will be used). Devices:
+I0000 00:00:1794820562.968142   80396 service.cc:170]   StreamExecutor [0]: NVIDIA GeForce RTX 3050 Laptop GPU, Compute Capability 8.6 (Driver: 13.4.0[615.78.8]; Runtime: 12.9.0; Toolkit: 12.5.0; DNN: 9.28.1)
+I0000 00:00:1794820563.021092   80396 dump_mlir_util.cc:269] disabling MLIR crash reproducer, set env var `MLIR_CRASH_REPRODUCER_DIRECTORY` to enable.
+I0000 00:00:1794820563.572870   80396 cuda_dnn.cc:442] Loaded cuDNN version 92801
+I0000 00:00:1794820566.793040   80396 device_compiler.h:208] Compiled cluster using XLA!  This line is logged at most once for the lifetime of the process.
+163/163 - 20s - 124ms/step - accuracy: 0.9064 - loss: 1.1152 - val_accuracy: 0.8750 - val_loss: 0.6920
+Epoch 2/5
+163/163 - 12s - 71ms/step - accuracy: 0.9433 - loss: 0.3939 - val_accuracy: 0.9375 - val_loss: 0.3237
+Epoch 3/5
+163/163 - 11s - 67ms/step - accuracy: 0.9379 - loss: 0.2975 - val_accuracy: 0.9375 - val_loss: 0.3966
+Epoch 4/5
+163/163 - 11s - 69ms/step - accuracy: 0.9463 - loss: 0.2233 - val_accuracy: 0.6875 - val_loss: 0.5801
+Epoch 5/5
+163/163 - 11s - 67ms/step - accuracy: 0.9415 - loss: 0.2200 - val_accuracy: 0.9375 - val_loss: 0.3421
+============================== PHASE 2: fine-tune top 10 layers (up to 15 epochs)
+Epoch 1/15
+E0000 00:00:1794820629.527393   83072 cuda_executor.cc:1365] [0] Failed to allocate device memory of 3.77GiB (4043702272 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+E0000 00:00:1794820629.527516   83072 cuda_executor.cc:1365] [0] Failed to allocate device memory of 3.39GiB (3639331840 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+E0000 00:00:1794820629.527561   83072 cuda_executor.cc:1365] [0] Failed to allocate device memory of 3.05GiB (3275398656 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+E0000 00:00:1794820629.527607   83072 cuda_executor.cc:1365] [0] Failed to allocate device memory of 2.75GiB (2947858688 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+E0000 00:00:1794820629.527655   83072 cuda_executor.cc:1365] [0] Failed to allocate device memory of 2.47GiB (2653072640 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+W0000 00:00:1794820629.527660   83072 bfc_allocator.cc:371] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.27GiB from the lower end with freed_by_count=0. The caller indicates that this is not a failure, but this may mean that there could be performance gains if more memory were available.
+E0000 00:00:1794820629.647549   83064 cuda_executor.cc:1365] [0] Failed to allocate device memory of 3.77GiB (4043702272 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+E0000 00:00:1794820629.647635   83064 cuda_executor.cc:1365] [0] Failed to allocate device memory of 3.39GiB (3639331840 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+E0000 00:00:1794820629.647681   83064 cuda_executor.cc:1365] [0] Failed to allocate device memory of 3.05GiB (3275398656 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+E0000 00:00:1794820629.647725   83064 cuda_executor.cc:1365] [0] Failed to allocate device memory of 2.75GiB (2947858688 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+E0000 00:00:1794820629.647770   83064 cuda_executor.cc:1365] [0] Failed to allocate device memory of 2.47GiB (2653072640 bytes): RESOURCE_EXHAUSTED: : CUDA_ERROR_OUT_OF_MEMORY: out of memory
+=== Source Location Trace: === 
+external/xla/xla/stream_executor/cuda/cuda_status.cc:45
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:230
+external/xla/xla/stream_executor/cuda/cuda_device_allocator.cc:487
+
+W0000 00:00:1794820629.647775   83064 bfc_allocator.cc:371] Allocator (GPU_0_bfc) ran out of memory trying to allocate 2.27GiB from the lower end with freed_by_count=0. The caller indicates that this is not a failure, but this may mean that there could be performance gains if more memory were available.
+163/163 - 17s - 106ms/step - accuracy: 0.9617 - loss: 0.1653 - val_accuracy: 0.9375 - val_loss: 0.2581 - learning_rate: 1.0000e-05
+Epoch 2/15
+163/163 - 12s - 72ms/step - accuracy: 0.9655 - loss: 0.1533 - val_accuracy: 0.9375 - val_loss: 0.2389 - learning_rate: 1.0000e-05
+Epoch 3/15
+163/163 - 12s - 74ms/step - accuracy: 0.9663 - loss: 0.1485 - val_accuracy: 0.9375 - val_loss: 0.2602 - learning_rate: 1.0000e-05
+Epoch 4/15
+
+Epoch 4: ReduceLROnPlateau reducing learning rate to 4.999999873689376e-06.
+163/163 - 11s - 68ms/step - accuracy: 0.9691 - loss: 0.1449 - val_accuracy: 0.9375 - val_loss: 0.2415 - learning_rate: 1.0000e-05
+Epoch 5/15
+163/163 - 12s - 72ms/step - accuracy: 0.9695 - loss: 0.1401 - val_accuracy: 0.9375 - val_loss: 0.1974 - learning_rate: 5.0000e-06
+Epoch 6/15
+163/163 - 11s - 70ms/step - accuracy: 0.9741 - loss: 0.1331 - val_accuracy: 0.9375 - val_loss: 0.2007 - learning_rate: 5.0000e-06
+Epoch 7/15
+
+Epoch 7: ReduceLROnPlateau reducing learning rate to 2.499999936844688e-06.
+163/163 - 12s - 72ms/step - accuracy: 0.9745 - loss: 0.1272 - val_accuracy: 0.9375 - val_loss: 0.2048 - learning_rate: 5.0000e-06
+Epoch 8/15
+163/163 - 11s - 67ms/step - accuracy: 0.9735 - loss: 0.1333 - val_accuracy: 0.9375 - val_loss: 0.2142 - learning_rate: 2.5000e-06
+Epoch 8: early stopping
+Restoring model weights from the end of the best epoch: 1.
+RESNET TEST: acc=0.9215 loss=0.3079
+               precision    recall  f1-score   support
+
+      NORMAL       0.92      0.86      0.89       234
+   PNEUMONIA       0.92      0.96      0.94       390
+
+    accuracy                           0.92       624
+   macro avg       0.92      0.91      0.92       624
+weighted avg       0.92      0.92      0.92       624
+
+DONE
+EXIT CODE: 0
